@@ -21,12 +21,17 @@ def Bayes_formula(true_or_false):
                                    disease["Здоров"]
     probability = test[true_or_false]["Болен"] * disease["Болен"] / probability_observable_event
     if true_or_false == "Положительный":
-        test_rectangle.draw_rectangle("Положительный", "Отрицательный", "1", "0", canvas)
+        test_rectangle.positive_probability = 1
+        test_rectangle.negative_probability = 0
 
     else:
-        test_rectangle.draw_rectangle("Положительный", "Отрицательный", "0", "1", canvas)
+        test_rectangle.positive_probability = 0
+        test_rectangle.negative_probability = 1
 
-    disease_rectangle.draw_rectangle("Болен", "Здоров", round(probability, 2), 1 - round(probability, 2), canvas)
+    test_rectangle.draw_rectangle(canvas)
+    disease_rectangle.positive_probability = round(probability, 2)
+    disease_rectangle.negative_probability = round(1 - probability, 2)
+    disease_rectangle.draw_rectangle(canvas)
 
 
 def draw_button(x, y, x_size, y_size, name_positive, name_negative):
@@ -40,11 +45,11 @@ root = Tk()
 canvas = Canvas(root, width="1024", height="512")  # Создаю окно
 canvas.pack()
 
-disease_rectangle = SimpleRectangle(427, 60, 180, 120, "Болезнь")
-disease_rectangle.draw_rectangle("Болен", "Здоров", "?", "?", canvas)
+disease_rectangle = SimpleRectangle(427, 60, 180, 120, "Болезнь", "Болен", "Здоров", "?", "?")
+disease_rectangle.draw_rectangle(canvas)
 
-test_rectangle = SimpleRectangle(427, 220, 180, 120, "Тест")
-test_rectangle.draw_rectangle("Положительный", "Отрицательный", "?", "?", canvas)
+test_rectangle = SimpleRectangle(427, 220, 180, 120, "Тест", "Положительный", "Отрицательный", "?", "?")
+test_rectangle.draw_rectangle(canvas)
 draw_button(test_rectangle.x, test_rectangle.y, test_rectangle.x_size, test_rectangle.y_size, "Положительный",
             "Отрицательный")
 
