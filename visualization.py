@@ -1,5 +1,6 @@
 class SimpleRectangle:
-    def __init__(self, x, y, x_size, y_size, name, name_positive, name_negative, positive_probability, negative_probability):
+    def __init__(self, x, y, x_size, y_size, name, name_positive, name_negative,
+                 positive_probability, negative_probability):
         self.x = x
         self.y = y
         self.x_size = x_size
@@ -15,7 +16,7 @@ class SimpleRectangle:
 
     def draw_rectangle(self, canvas):
         x, y, x_size, y_size, name = self.x, self.y, self.x_size, self.y_size, self.name
-        name_positive, name_negative= self.name_positive, self.name_negative
+        name_positive, name_negative = self.name_positive, self.name_negative
         positive_probability, negative_probability = self.positive_probability, self.negative_probability
 
         canvas.create_rectangle(x, y, x + x_size, y + y_size)
